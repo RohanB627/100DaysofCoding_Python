@@ -1,6 +1,7 @@
 from turtle import Turtle
 
-Pos = [(0,0),(-20,0),(-40,0)]
+
+POS = [(0,0),(-20,0),(-40,0)]
 M_Dis = 20
 UP = 90
 DOWN = 270
@@ -16,12 +17,20 @@ class Snake:
         self.move()
 
     def create(self):
-        for p in Pos:
-            new_turtle = Turtle(shape="square")
-            new_turtle.penup()
-            new_turtle.color("white")
-            new_turtle.goto(p)
-            self.items.append(new_turtle)
+        for p in POS:
+            self.add_snake(p)
+
+    def add_snake(self, p):
+        new_turtle = Turtle(shape="square")
+        new_turtle.penup()
+        new_turtle.color("white")
+        new_turtle.goto(p)
+        self.items.append(new_turtle)
+
+    def extend(self):
+        self.add_snake(self.items[-1].position())
+        # extension.goto(x,0)
+        # self.items.append(extension)
 
     def move(self):
         for k in range(len(self.items) -1 ,0,-1):
